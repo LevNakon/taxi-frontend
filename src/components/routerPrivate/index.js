@@ -1,3 +1,6 @@
-import PrivateRoute from './routerPrivate';
+import { PrivateRoute, PrivateRouteMain } from './routerPrivate';
 
-export default PrivateRoute;
+export {
+    PrivateRoute,
+    PrivateRouteMain
+};

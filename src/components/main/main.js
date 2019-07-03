@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import SignUp from '../signUp';
+import SignIn from '../signIn';
 
 import main from '../../static/images/main.png';
-import './main.scss';
 
 export default class Main extends Component {
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         return (
-            <Grid container={true} justify="space-around" spacing={3}>
+            <Grid container={true} justify="space-around">
+                <Grid item={true} xs={10} md={5}>
+                    <SignIn {...this.props} />
+                </Grid>
                 <Grid item={true} xs={10} md={5}>
                     <Card className='card_photo'>
                         <CardActionArea>
@@ -36,9 +41,6 @@ export default class Main extends Component {
                             </CardContent>
                         </CardActionArea>
                     </Card>
-                </Grid>
-                <Grid item={true} xs={8} md={5}>
-                    <SignUp/>
                 </Grid>
             </Grid>
         );

@@ -1,0 +1,41 @@
+.mg_0_auto{
+    margin: 0 auto !important;
+}
+
+.bg{
+    background: #A1FFCE;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.sign_up_form{
+    margin-top: 120px;
+    // margin-bottom: 30px;
+    padding: 80px 10%;
+    position: relative;
+}
+
+.sign_up_div{
+    position: absolute;
+    color: white;
+    top: -50px;
+    left: 25%;
+    width: 50%;
+    height: 100px;
+    border: 0px solid ;
+    border-radius: 5px;
+    background: #000428;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    h2{
+        text-align: center;
+    }
+}
+
+.mg_top_20{
+    margin-top: 20px !important;
+}
+
+.btn_sign{
+    margin-right: 20px !important; 
+}

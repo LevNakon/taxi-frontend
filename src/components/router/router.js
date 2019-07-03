@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import PATHS from '../../constants/routes';
-import PrivateRoute from '../routerPrivate';
-import Main from '../main';
+import { PrivateRoute, PrivateRouteMain } from '../routerPrivate';
+// import Main from '../main';
+import Teleport from '../teleport';
+import SignUp from '../signUp';
 
 export default class Router extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path={PATHS.INDEX} component={Main} />
-                    {/* <PrivateRoute path={PATHS.SIGNUP} component={SignUpForm} /> */}
-                </Switch>
-            </BrowserRouter>
+            <Switch>
+                <PrivateRouteMain exact path={PATHS.INDEX} component={Teleport} />
+                <PrivateRoute path={PATHS.SIGNUP} component={SignUp} />
+                {/* <Route component={Error404}/> */}
+            </Switch>
         );
     };
 };
