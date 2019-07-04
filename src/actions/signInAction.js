@@ -7,8 +7,7 @@ export function signInSuccess(payload){
     return { 
         type: SIGN_IN_SUCCESS,
         message: payload.message,
-        success: payload.success,
-        userId: payload.userId
+        success: payload.success
     };
 };
 

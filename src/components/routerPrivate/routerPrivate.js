@@ -17,12 +17,21 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const PrivateRouteMain = ({ component: Component, ...rest }) => (
     <Route {...rest}
         render={props => {
-            return !auth.isAuthenticated ? <Main {...props} /> : <Component {...props} />
+            return !auth.isAuthenticated ? <Component {...props} /> : <Redirect to={PATHS.TELEPORT} />
+        }}
+    />
+);
+
+const PrivateRouteAuth = ({ component: Component, ...rest }) => (
+    <Route {...rest}
+        render={props => {
+            return auth.isAuthenticated ? <Component {...props} /> : <Redirect to={PATHS.INDEX} />
         }}
     />
 );
 
 export {
     PrivateRoute,
-    PrivateRouteMain
+    PrivateRouteMain,
+    PrivateRouteAuth
 };

@@ -1,22 +1,22 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_FAIL, SIGN_IN_NULL } from '../actions/signInAction';
+import { USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_NULL } from '../actions/userUpdateAction';
 
 const initialState = { message: '', success: null };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case SIGN_IN_SUCCESS:
+        case USER_UPDATE_SUCCESS:
             return {
                 ...state,
                 message: action.message,
                 success: action.success
             };
-        case SIGN_IN_FAIL:
+        case USER_UPDATE_FAIL:
             return {
                 ...state,
                 message: action.message,
                 success: action.success
             };
-        case SIGN_IN_NULL:
+        case USER_UPDATE_NULL:
             return {
                 ...state,
                 message: action.message,

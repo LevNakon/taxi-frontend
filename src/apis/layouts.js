@@ -12,4 +12,12 @@ export default class LayoutAPI {
     static signIn(payload) {
         return http.post(`/auth/signin`, payload);
     }
+
+    static userGet() {
+        return http.get(`/user/info`);
+    }
+
+    static updateUser(payload) {
+        return http.put(`/user/update`, payload);
+    }
 };

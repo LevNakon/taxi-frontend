@@ -1,6 +1,7 @@
-import { PrivateRoute, PrivateRouteMain } from './routerPrivate';
+import { PrivateRoute, PrivateRouteMain, PrivateRouteAuth } from './routerPrivate';
 
 export {
     PrivateRoute,
-    PrivateRouteMain
+    PrivateRouteMain,
+    PrivateRouteAuth
 };

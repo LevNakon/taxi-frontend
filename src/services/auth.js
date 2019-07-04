@@ -16,11 +16,8 @@ const auth = {
     localStorage.setItem(LOCALSTORAGE.AUTH,false);
     this.isAuthenticated = JSON.parse(localStorage.getItem(LOCALSTORAGE.AUTH));
     localStorage.removeItem(LOCALSTORAGE.TOKEN);
-    if(history.location.pathname===PATHS.INDEX){
-      history.go(0);
-    }else{
-      history.push(PATHS.INDEX);
-    }
+    history.push(PATHS.INDEX);
+    history.go(0);
   },
   parseJwt(token){
     let base64Url = token.split('.')[1];

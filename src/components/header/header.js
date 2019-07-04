@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -7,18 +9,17 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import AccountBox from '@material-ui/icons/AccountBox'
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Map from '@material-ui/icons/Map';
 
+import { userGetWatcher, userGetNull } from '../../actions/userAction';
 import PATHS from '../../constants/routes';
 import auth from '../../services/auth';
 
@@ -27,6 +28,12 @@ class Header extends Component {
         super(props)
         this.state = {
             openDrawer: false
+        }
+    }
+
+    componentDidMount() {
+        if (auth.isAuthenticated && this.props.user === null) {
+            this.props.userGetWatcher();
         }
     }
 
@@ -47,7 +54,7 @@ class Header extends Component {
     }
 
     render() {
-        const { location } = this.props;
+        const { location, history, user } = this.props;
         const { openDrawer } = this.state;
         return (
             <React.Fragment>
@@ -90,19 +97,49 @@ class Header extends Component {
                     </div>
                     <Divider />
                     <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                        <ListItem onClick={(e) => {
+                            history.push(PATHS.TELEPORT);
+                            this.handlerCloseDrawer()
+                        }} selected={location.pathname === PATHS.TELEPORT ? true : false}
+                            button key={'Teleport Map'}>
+                            <ListItemIcon ><Map /></ListItemIcon>
+                            <ListItemText primary={'Teleport'} secondary={'View Map'} />
+                        </ListItem>
+                        <ListItem onClick={(e) => {
+                            history.push(PATHS.USER);
+                            this.handlerCloseDrawer()
+                        }} selected={location.pathname === PATHS.USER ? true : false}
+                            button key={'My Account'}>
+                            <ListItemIcon><AccountBox /></ListItemIcon>
+                            <ListItemText primary={user ? user.firstName : 'My Account'} secondary={'View Profile'} />
+                        </ListItem>
+                        <Divider />
+                        <ListItem key={'Regist as a driver'}>
+                            <Button onClick={(e) => {
+                                history.push(PATHS.REGISTR_DRIVER);
+                                this.handlerCloseDrawer()
+                            }} selected={location.pathname === PATHS.REGISTR_DRIVER ? true : false}
+                                className='btn_sign' variant="contained" color="secondary">
+                                Regist as a driver
+                            </Button>
+                        </ListItem>
                     </List>
-                    <Divider />
                 </Drawer>
             </React.Fragment>
         );
     };
 };
 
-export default withRouter(Header);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        userGetWatcher,
+        userGetNull
+    }, dispatch);
+};
+
+const mapStateToProps = ({ userState }) => ({
+    user: userState.user
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
 

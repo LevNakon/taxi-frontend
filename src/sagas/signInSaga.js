@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import LayoutAPI from '../apis/layouts';
 import auth from '../services/auth';
+import PATHS from '../constants/routes';
 import { signInSuccess, signInFail, SIGN_IN_WATCHER } from '../actions/signInAction';
 
 function* signIn(action) {
@@ -17,7 +18,7 @@ function* signIn(action) {
         });
         yield put(signInSuccess(data));
         auth.login(data.token);
-        history.go(0);
+        history.push(PATHS.TELEPORT);
     } catch (error) {
         const { data } = error.response;
         yield put(signInFail(data));

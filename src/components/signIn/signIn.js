@@ -17,7 +17,7 @@ class SignIn extends Component {
     }
 
     componentDidMount() {
-        if(this.props.success!==null){
+        if (this.props.success !== null) {
             this.props.signInNull();
         }
     }
@@ -42,21 +42,22 @@ class SignIn extends Component {
             >
                 {({ errors, touched }) => {
                     const { message, success } = this.props;
-                    return (<Grid xs={10} md={10} item className='mg_0_auto'>
-                        <Paper xs={10} md={10} className='mg_0_auto bg'>
-                            <Form className='sign_up_form'>
-                                <div className='sign_up_div'><h2>Sign In</h2></div>
-                                <div>
-                                    <Field fullWidth={true} disabled={false} type="email" name="email" label="E-mail" component={TextField} />
-                                </div>
-                                <div>
-                                    <Field fullWidth={true} disabled={false} type="password" name="password" label="Password" component={TextField} />
-                                </div>
-                                {!success ? <div style={{ color: '#ff00cf' }}>{message}</div> : null}
-                                <Button type="submit" className='btn_sign mg_top_20' variant="contained" color="secondary">Submit</Button>
-                            </Form>
-                        </Paper>
-                    </Grid>
+                    return (
+                        <Grid xs={10} md={10} item className='mg_0_auto'>
+                            <Paper xs={10} md={10} className='mg_0_auto bg'>
+                                <Form className='sign_up_form'>
+                                    <div className='sign_up_div'><h2>Sign In</h2></div>
+                                    <div>
+                                        <Field fullWidth={true} disabled={false} type="email" name="email" label="E-mail" component={TextField} />
+                                    </div>
+                                    <div>
+                                        <Field fullWidth={true} disabled={false} type="password" name="password" label="Password" component={TextField} />
+                                    </div>
+                                    {!success ? <div style={{ color: '#ff00cf' }}>{message}</div> : null}
+                                    <Button type="submit" className='btn_sign mg_top_20' variant="contained" color="secondary">Submit</Button>
+                                </Form>
+                            </Paper>
+                        </Grid>
                     );
                 }}
             </Formik>
@@ -78,8 +79,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = ({ signInState }) => ({
     message: signInState.message,
-    success: signInState.success,
-    userId: signInState.userId
+    success: signInState.success
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

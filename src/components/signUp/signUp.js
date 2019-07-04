@@ -102,7 +102,7 @@ const validationSchema = Yup.object().shape({
     gender: Yup.string().required('Gender is required'),
     password: Yup.string().min(6, 'Password must be 6 characters or longer').required('Password is required'),
     cpassword: Yup.string().oneOf([Yup.ref('password'), null], "Passwords don't match").required('Confirm Password is required')
-})
+});
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
