@@ -5,7 +5,9 @@ const PATHS = Object.freeze({
     LOGOUT: '/logout',
     TELEPORT: '/teleport',
     USER: '/user',
-    REGISTR_DRIVER:'/registr_driver'
+    REGISTR_DRIVER: '/registr_driver',
+    DRIVER: '/driver',
+    CAR: '/car'
 });
 
 export default PATHS;

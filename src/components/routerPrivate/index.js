@@ -1,7 +1,9 @@
-import { PrivateRoute, PrivateRouteMain, PrivateRouteAuth } from './routerPrivate';
+import { PrivateRoute, PrivateRouteMain, PrivateRouteAuth, PrivateRouteAuthDriver, PrivateRouteAuthNoDriver } from './routerPrivate';
 
 export {
     PrivateRoute,
     PrivateRouteMain,
-    PrivateRouteAuth
+    PrivateRouteAuth,
+    PrivateRouteAuthDriver,
+    PrivateRouteAuthNoDriver
 };

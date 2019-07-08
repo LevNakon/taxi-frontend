@@ -2,9 +2,8 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import auth from '../../services/auth';
+import driverSwitch from '../../services/driver';
 import PATHS from '../../constants/routes';
-import Main from '../main';
-
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest}
@@ -30,8 +29,26 @@ const PrivateRouteAuth = ({ component: Component, ...rest }) => (
     />
 );
 
+const PrivateRouteAuthDriver = ({ component: Component, ...rest }) => (
+    <Route {...rest}
+        render={props => {
+            return auth.isAuthenticated && driverSwitch.isChecked ? <Component {...props} /> : <Redirect to={PATHS.INDEX} />
+        }}
+    />
+);
+
+const PrivateRouteAuthNoDriver = ({ component: Component, ...rest }) => (
+    <Route {...rest}
+        render={props => {
+            return auth.isAuthenticated && !driverSwitch.isChecked ? <Component {...props} /> : <Redirect to={PATHS.DRIVER} />
+        }}
+    />
+);
+
 export {
     PrivateRoute,
     PrivateRouteMain,
-    PrivateRouteAuth
+    PrivateRouteAuth,
+    PrivateRouteAuthDriver,
+    PrivateRouteAuthNoDriver
 };

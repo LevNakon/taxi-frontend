@@ -2,6 +2,7 @@ export const CAR_CREATE_SUCCESS = 'CAR_CREATE_SUCCESS';
 export const CAR_CREATE_FAIL = 'CAR_CREATE_FAIL';
 export const CAR_CREATE_WATCHER = 'CAR_CREATE_WATCHER';
 export const CAR_CREATE_NULL = 'CAR_CREATE_NULL';
+export const CAR_UPDATE_WATCHER = 'CAR_UPDATE_WATCHER';
 
 export function carCreateSuccess(payload){
     return { 
@@ -31,6 +32,13 @@ export function carCreateNull(){
 export function carCreateWatcher(payload){
     return {
         type: CAR_CREATE_WATCHER,
+        payload
+    }
+};
+
+export function carUpdateWatcher(payload){
+    return {
+        type: CAR_UPDATE_WATCHER,
         payload
     }
 };

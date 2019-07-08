@@ -1,6 +1,6 @@
 import { DRIVER_CREATE_SUCCESS, DRIVER_CREATE_FAIL, DRIVER_CREATE_NULL } from '../actions/driverAction';
 
-const initialState = { message: '', success: null, driver: null };
+const initialState = { message: '', success: null, driver: null, status: false };
 
 export default (state = initialState, action) => {
     switch (action.type) {

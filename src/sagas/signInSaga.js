@@ -4,6 +4,7 @@ import LayoutAPI from '../apis/layouts';
 import auth from '../services/auth';
 import PATHS from '../constants/routes';
 import { signInSuccess, signInFail, SIGN_IN_WATCHER } from '../actions/signInAction';
+import { userGetSuccess } from '../actions/userAction';
 
 function* signIn(action) {
     const {
@@ -17,8 +18,10 @@ function* signIn(action) {
             password
         });
         yield put(signInSuccess(data));
+        yield put(userGetSuccess(data));
         auth.login(data.token);
         history.push(PATHS.TELEPORT);
+        history.go(0);
     } catch (error) {
         const { data } = error.response;
         yield put(signInFail(data));

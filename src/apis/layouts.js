@@ -21,7 +21,7 @@ export default class LayoutAPI {
         return http.put(`/user/update`, payload);
     }
 
-    static driverGet(driverId) {
+    static driverGet({ driverId }) {
         return http.get(`/driver/${driverId}`);
     }
 
@@ -29,11 +29,19 @@ export default class LayoutAPI {
         return http.post(`/driver/create`, payload);
     }
 
-    static carGet(carId) {
+    static driverUpdate(payload) {
+        return http.put(`/driver/update`, payload);
+    }
+
+    static carGet({ carId }) {
         return http.get(`/car/${carId}`);
     }
 
     static carCreate(payload) {
         return http.post(`/car/create`, payload);
+    }
+
+    static carUpdate(payload) {
+        return http.put(`/car/update`, payload);
     }
 };

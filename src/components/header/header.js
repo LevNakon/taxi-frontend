@@ -17,17 +17,24 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import Map from '@material-ui/icons/Map';
+import Navigation from '@material-ui/icons/Navigation';
+import DirectionsCar from '@material-ui/icons/DirectionsCar';
 
 import { userGetWatcher, userGetNull } from '../../actions/userAction';
+import { driverCarGetWatcher } from '../../actions/driverCarAction';
 import PATHS from '../../constants/routes';
 import auth from '../../services/auth';
+import driverSwitch from '../../services/driver';
 
 class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            openDrawer: false
+            openDrawer: false,
+            switchDriver: driverSwitch.isChecked
         }
     }
 
@@ -35,6 +42,26 @@ class Header extends Component {
         if (auth.isAuthenticated && this.props.user === null) {
             this.props.userGetWatcher();
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user) {
+            if (this.props.user === null && nextProps.user !== null) {
+                if (nextProps.user.driverId) {
+                    const driverId = nextProps.user.driverId;
+                    this.props.driverCarGetWatcher({ driverId });
+                }
+            }
+        }
+    }
+
+    accountSwitcher = (e) => {
+        if (!e.currentTarget.checked) {
+            driverSwitch.setCheckedFalse();
+        } else {
+            driverSwitch.setCheckedTrue();
+        }
+        this.setState({ switchDriver: driverSwitch.isChecked });
     }
 
     handlerOpenDrawer = (e) => {
@@ -54,8 +81,9 @@ class Header extends Component {
     }
 
     render() {
-        const { location, history, user } = this.props;
-        const { openDrawer } = this.state;
+        const { location, history, user, driver, car } = this.props;
+        // console.log(driver, car);
+        let { openDrawer, switchDriver } = this.state;
         return (
             <React.Fragment>
                 <AppBar position="static" className='header_bg'>
@@ -97,6 +125,26 @@ class Header extends Component {
                     </div>
                     <Divider />
                     <List>
+                        {user && !user.driverId ?
+                            <ListItem key={'Regist as a driver'}>
+                                <Button onClick={(e) => {
+                                    history.push(PATHS.REGISTR_DRIVER);
+                                    this.handlerCloseDrawer()
+                                }} selected={location.pathname === PATHS.REGISTR_DRIVER ? true : false}
+                                    className='btn_sign' variant="contained" color="secondary">
+                                    Regist as a driver
+                            </Button>
+                            </ListItem> : <FormControlLabel
+                                className='account_switch'
+                                control={
+                                    <Switch
+                                        defaultChecked={switchDriver}
+                                        value={switchDriver}
+                                        onChange={this.accountSwitcher}
+                                        color={"secondary"}
+                                    />
+                                } label='Driver' />}
+                        <Divider />
                         <ListItem onClick={(e) => {
                             history.push(PATHS.TELEPORT);
                             this.handlerCloseDrawer()
@@ -113,16 +161,26 @@ class Header extends Component {
                             <ListItemIcon><AccountBox /></ListItemIcon>
                             <ListItemText primary={user ? user.firstName : 'My Account'} secondary={'View Profile'} />
                         </ListItem>
-                        <Divider />
-                        <ListItem key={'Regist as a driver'}>
-                            <Button onClick={(e) => {
-                                history.push(PATHS.REGISTR_DRIVER);
-                                this.handlerCloseDrawer()
-                            }} selected={location.pathname === PATHS.REGISTR_DRIVER ? true : false}
-                                className='btn_sign' variant="contained" color="secondary">
-                                Regist as a driver
-                            </Button>
-                        </ListItem>
+                        {driverSwitch.isChecked ?
+                            <React.Fragment>
+                                <ListItem onClick={(e) => {
+                                    history.push(PATHS.DRIVER);
+                                    this.handlerCloseDrawer()
+                                }} selected={location.pathname === PATHS.DRIVER ? true : false}
+                                    button key={'Driver Page'}>
+                                    <ListItemIcon><Navigation /></ListItemIcon>
+                                    <ListItemText primary={'Driver'} secondary={'View Profile'} />
+                                </ListItem>
+                                <ListItem onClick={(e) => {
+                                    history.push(PATHS.CAR);
+                                    this.handlerCloseDrawer()
+                                }} selected={location.pathname === PATHS.CAR ? true : false}
+                                    button key={'Car Page'}>
+                                    <ListItemIcon><DirectionsCar /></ListItemIcon>
+                                    <ListItemText primary={'Car'} secondary={'View Profile'} />
+                                </ListItem>
+                            </React.Fragment>
+                            : null}
                     </List>
                 </Drawer>
             </React.Fragment>
@@ -133,12 +191,15 @@ class Header extends Component {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         userGetWatcher,
-        userGetNull
+        userGetNull,
+        driverCarGetWatcher
     }, dispatch);
 };
 
-const mapStateToProps = ({ userState }) => ({
-    user: userState.user
+const mapStateToProps = ({ userState, driverState, carState }) => ({
+    user: userState.user,
+    driver: driverState.driver,
+    car: carState.car
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

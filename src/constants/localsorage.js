@@ -1,6 +1,7 @@
 const LOCALSTORAGE = Object.freeze({
     TOKEN : 'token',
-    AUTH : 'auth'
+    AUTH : 'auth',
+    CHECKED: 'checked'
   });
   
 export default LOCALSTORAGE;
