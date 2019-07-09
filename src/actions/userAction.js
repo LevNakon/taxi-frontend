@@ -2,6 +2,7 @@ export const USER_GET_SUCCESS = 'USER_GET_SUCCESS';
 export const USER_GET_FAIL = 'USER_GET_FAIL';
 export const USER_GET_WATCHER = 'USER_GET_WATCHER';
 export const USER_GET_NULL = 'USER_GET_NULL';
+export const CHECKER_CHANGE = 'CHECKER_CHANGE';
 
 export function userGetSuccess(payload){
     return { 
@@ -31,5 +32,12 @@ export function userGetNull(){
 export function userGetWatcher(){
     return {
         type: USER_GET_WATCHER
+    }
+};
+
+export function checkerChange(isChecked){
+    return {
+        type: CHECKER_CHANGE,
+        isChecked
     }
 };

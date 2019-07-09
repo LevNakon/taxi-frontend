@@ -23,11 +23,12 @@ import Map from '@material-ui/icons/Map';
 import Navigation from '@material-ui/icons/Navigation';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
 
-import { userGetWatcher, userGetNull } from '../../actions/userAction';
+import { userGetWatcher, userGetNull, checkerChange } from '../../actions/userAction';
 import { driverCarGetWatcher } from '../../actions/driverCarAction';
 import PATHS from '../../constants/routes';
 import auth from '../../services/auth';
 import driverSwitch from '../../services/driver';
+import { joinDriverRoom, leaveDriverRoom } from '../../services/socket'; 
 
 class Header extends Component {
     constructor(props) {
@@ -41,6 +42,10 @@ class Header extends Component {
     componentDidMount() {
         if (auth.isAuthenticated && this.props.user === null) {
             this.props.userGetWatcher();
+        }
+        this.props.checkerChange(driverSwitch.isChecked);
+        if(driverSwitch.isChecked){
+            joinDriverRoom();
         }
     }
 
@@ -58,10 +63,13 @@ class Header extends Component {
     accountSwitcher = (e) => {
         if (!e.currentTarget.checked) {
             driverSwitch.setCheckedFalse();
+            leaveDriverRoom();
         } else {
             driverSwitch.setCheckedTrue();
+            joinDriverRoom();
         }
-        this.setState({ switchDriver: driverSwitch.isChecked });
+        this.props.checkerChange(driverSwitch.isChecked);
+        // this.setState({ switchDriver: driverSwitch.isChecked });
     }
 
     handlerOpenDrawer = (e) => {
@@ -81,7 +89,7 @@ class Header extends Component {
     }
 
     render() {
-        const { location, history, user, driver, car } = this.props;
+        const { location, history, user, driver, car, isChecked } = this.props;
         // console.log(driver, car);
         let { openDrawer, switchDriver } = this.state;
         return (
@@ -161,7 +169,7 @@ class Header extends Component {
                             <ListItemIcon><AccountBox /></ListItemIcon>
                             <ListItemText primary={user ? user.firstName : 'My Account'} secondary={'View Profile'} />
                         </ListItem>
-                        {driverSwitch.isChecked ?
+                        {isChecked ?
                             <React.Fragment>
                                 <ListItem onClick={(e) => {
                                     history.push(PATHS.DRIVER);
@@ -192,14 +200,16 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         userGetWatcher,
         userGetNull,
-        driverCarGetWatcher
+        driverCarGetWatcher,
+        checkerChange
     }, dispatch);
 };
 
 const mapStateToProps = ({ userState, driverState, carState }) => ({
     user: userState.user,
     driver: driverState.driver,
-    car: carState.car
+    car: carState.car,
+    isChecked: userState.isChecked
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

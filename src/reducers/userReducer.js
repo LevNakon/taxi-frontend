@@ -1,6 +1,6 @@
-import { USER_GET_SUCCESS, USER_GET_FAIL, USER_GET_NULL } from '../actions/userAction';
+import { USER_GET_SUCCESS, USER_GET_FAIL, USER_GET_NULL, CHECKER_CHANGE } from '../actions/userAction';
 
-const initialState = { message: '', success: null, user: null };
+const initialState = { message: '', success: null, user: null, isChecked: false };
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -22,6 +22,11 @@ export default (state = initialState, action) => {
                 ...state,
                 message: action.message,
                 success: action.success
+            };
+        case CHECKER_CHANGE:
+            return {
+                ...state,
+                isChecked: action.isChecked
             };
         default: return state;
     }
