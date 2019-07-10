@@ -7,7 +7,8 @@ const PATHS = Object.freeze({
     USER: '/user',
     REGISTR_DRIVER: '/registr_driver',
     DRIVER: '/driver',
-    CAR: '/car'
+    CAR: '/car',
+    TRIPS: '/trips'
 });
 
 export default PATHS;

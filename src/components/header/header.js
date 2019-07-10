@@ -22,6 +22,7 @@ import Switch from '@material-ui/core/Switch';
 import Map from '@material-ui/icons/Map';
 import Navigation from '@material-ui/icons/Navigation';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
+import Room from '@material-ui/icons/Room';
 
 import { userGetWatcher, userGetNull, checkerChange } from '../../actions/userAction';
 import { driverCarGetWatcher } from '../../actions/driverCarAction';
@@ -168,6 +169,14 @@ class Header extends Component {
                             button key={'My Account'}>
                             <ListItemIcon><AccountBox /></ListItemIcon>
                             <ListItemText primary={user ? user.firstName : 'My Account'} secondary={'View Profile'} />
+                        </ListItem>
+                        <ListItem onClick={(e) => {
+                            history.push(PATHS.TRIPS);
+                            this.handlerCloseDrawer()
+                        }} selected={location.pathname === PATHS.TRIPS ? true : false}
+                            button key={'My Trips'}>
+                            <ListItemIcon><Room /></ListItemIcon>
+                            <ListItemText primary={'My Trips'} secondary={'View Trips'} />
                         </ListItem>
                         {isChecked ?
                             <React.Fragment>

@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
+import { FixedSizeList } from 'react-window';
+
+import { tripGetWatcher, tripNull } from '../../actions/tripAction';
+import { userGetWatcher } from '../../actions/userAction';
+import { CONDITION } from '../../constants/additional';
+import auth from '../../services/auth';
+
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+class Trips extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        if (auth.isAuthenticated && this.props.user === null) {
+            this.props.userGetWatcher();
+        }
+        if (this.props.success !== null) {
+            this.props.tripNull();
+        }
+        this.props.tripGetWatcher({
+            history: this.props.history
+        });
+    }
+
+    row = ({ index }) => {
+        const { trips } = this.state;
+        console.log(trips);
+        return (
+            <ListItem button key={index}>
+                <ListItemText primary={`${trips[index].startAddress} - ${trips[index].endAddress}`} secondary={`Price - ${trips[index].price}`} />
+            </ListItem>
+        );
+    }
+
+    render() {
+        const { trips } = this.props;
+        console.log(trips);
+        return (
+            <Grid xs={10} md={10} item className='mg_0_auto'>
+                <Paper xs={10} md={10} item className='mg_0_auto user_bg paper_conf'>
+                    {trips ? <React.Fragment>{trips.length > 0 ?
+                        <React.Fragment>
+                            {trips.map((elem)=>{
+                                return <li>{elem.startAddress}</li>
+                            })}
+                            {/* console.log('kek') */}
+                            {/* <FixedSizeList height={500} width={300} itemSize={70} itemCount={trips.length}>
+                                {this.row}
+                            </FixedSizeList> */}
+                        </React.Fragment> :
+                        <p>No trips</p>
+                    }
+                    </React.Fragment> : null
+                    }
+                </Paper>
+            </Grid>
+        );
+    }
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        userGetWatcher,
+        tripGetWatcher,
+        tripNull
+    }, dispatch);
+};
+
+const mapStateToProps = ({ tripState }) => ({
+    message: tripState.message,
+    success: tripState.success,
+    trips: tripState.trips,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Trips));

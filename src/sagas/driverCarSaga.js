@@ -34,9 +34,9 @@ function* driverCar(action) {
             year,
             run
         });
-        console.log(car.data);
         yield put(carCreateSuccess(car.data));
         history.push(PATHS.TELEPORT);
+        history.go(0);
     } catch (error) {
         const { data } = error.response;
         yield put(carCreateFail(data));

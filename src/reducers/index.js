@@ -5,7 +5,7 @@ import userReducer from './userReducer';
 import userUpdateReducer from './userUpdateReducer';
 import carReducer from './carReducer';
 import driverReducer from './driverReducer';
-
+import tripReducer from './tripReducer';
 
 export default combineReducers({
     signUpState: signUpReducer,
@@ -13,5 +13,6 @@ export default combineReducers({
     userState: userReducer,
     userUpdateState: userUpdateReducer,
     carState: carReducer,
-    driverState: driverReducer
+    driverState: driverReducer,
+    tripState: tripReducer
 });

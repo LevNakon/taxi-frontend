@@ -44,4 +44,12 @@ export default class LayoutAPI {
     static carUpdate(payload) {
         return http.put(`/car/update`, payload);
     }
+
+    static tripGetAll() {
+        return http.get(`/trip/all`);
+    }
+
+    static tripCreate(payload) {
+        return http.post(`/trip/create`, payload);
+    }
 };

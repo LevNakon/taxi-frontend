@@ -30,7 +30,6 @@ class Car extends Component {
 
     render() {
         const { car } = this.props;
-        console.log(car);
         return (<React.Fragment>
             {car ? <Formik
                 initialValues={{

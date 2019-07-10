@@ -33,7 +33,6 @@ class Driver extends Component {
 
     render() {
         const { driver } = this.props;
-        console.log(driver);
         return (<React.Fragment>
             {driver ? <Formik
                 initialValues={{

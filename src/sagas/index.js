@@ -8,9 +8,11 @@ import { driverCarWatcher } from './driverCarSaga';
 import { driverCreateWatcher, driverUpdateWatcher } from './driverSaga';
 import { carCreateWatcher, carUpdateWatcher } from './carSaga';
 import { driverCarGetWatcher } from './driverCraGetSaga';
+import { tripCreateWatcher, tripGetAllWatcher } from './tripSaga';
 
 export default function* rootSaga() {
     yield all([
+        tripCreateWatcher(),
         signUpWatcher(),
         signInWatcher(),
         userGetWatcher(),
@@ -20,6 +22,7 @@ export default function* rootSaga() {
         driverCreateWatcher(),
         driverCarGetWatcher(),
         driverUpdateWatcher(),
-        carUpdateWatcher()
+        carUpdateWatcher(),
+        tripGetAllWatcher()
     ]);
 };

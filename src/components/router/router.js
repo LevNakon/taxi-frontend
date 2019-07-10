@@ -9,6 +9,7 @@ import Main from '../main';
 import User from '../user';
 import Driver from '../driver';
 import Car from '../car';
+import Trips from '../trips'
 import DriverRegistration from '../driverRegistration';
 
 export default class Router extends Component {
@@ -22,6 +23,7 @@ export default class Router extends Component {
                 <PrivateRoute path={PATHS.SIGNUP} component={SignUp} />
                 <PrivateRouteAuth path={PATHS.TELEPORT} component={Teleport}/>
                 <PrivateRouteAuth path={PATHS.USER} component={User}/>
+                <PrivateRouteAuth path={PATHS.TRIPS} component={Trips}/>
                 <PrivateRouteAuthNoDriver path={PATHS.REGISTR_DRIVER} component={DriverRegistration}/>
                 <PrivateRouteAuthDriver path={PATHS.DRIVER} component={Driver} />
                 <PrivateRouteAuthDriver path={PATHS.CAR} component={Car} />
