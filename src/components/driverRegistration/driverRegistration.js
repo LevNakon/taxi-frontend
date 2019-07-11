@@ -6,11 +6,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Select } from 'formik-material-ui';
 
-import auth from '../../services/auth';
 import { CONDITION } from '../../constants/additional';
-import { carCreateWatcher, carCreateNull } from '../../actions/carAction';
-import { driverCreateWatcher, driverCreateNull } from '../../actions/driverAction';
-import { driverCarWatcher } from '../../actions/driverCarAction';
+import { carCreateNull } from '../../actions/carAction';
+import { driverCreateNull, driverCarWatcher } from '../../actions/driverAction';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -19,9 +17,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 
 class DriverRegistration extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         if (this.props.successCar !== null) {
@@ -46,7 +41,7 @@ class DriverRegistration extends Component {
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
                     const { experience, condition, brand, model, run, year } = values;
-                    const { driverCarWatcher, driverCreateWatcher, carCreateWatcher, history } = this.props;
+                    const { driverCarWatcher, history } = this.props;
                     driverCarWatcher({
                         experience,
                         condition,
@@ -58,7 +53,7 @@ class DriverRegistration extends Component {
                     });
                 }}
             >
-                {({ errors, touched, values }) => {
+                {() => {
                     const { successCar, messageCar, successDriver, messageDriver } = this.props;
                     return (
                         <Grid xs={10} md={10} item className='mg_0_auto'>
@@ -117,9 +112,7 @@ const validationSchema = Yup.object().shape({
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        carCreateWatcher,
         carCreateNull,
-        driverCreateWatcher,
         driverCreateNull,
         driverCarWatcher
     }, dispatch);

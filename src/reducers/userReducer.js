@@ -1,4 +1,4 @@
-import { USER_GET_SUCCESS, USER_GET_FAIL, USER_GET_NULL, CHECKER_CHANGE } from '../actions/userAction';
+import { USER_UPDATE_SUCCESS, USER_GET_SUCCESS, USER_FAIL, USER_NULL, CHECKER_CHANGE } from '../actions/userAction';
 
 const initialState = { message: '', success: null, user: null, isChecked: false };
 
@@ -9,15 +9,21 @@ export default (state = initialState, action) => {
                 ...state,
                 message: action.message,
                 success: action.success,
-                user: action.user 
+                user: action.user
             };
-        case USER_GET_FAIL:
+        case USER_UPDATE_SUCCESS:
             return {
                 ...state,
                 message: action.message,
                 success: action.success
             };
-        case USER_GET_NULL:
+        case USER_FAIL:
+            return {
+                ...state,
+                message: action.message,
+                success: action.success
+            };
+        case USER_NULL:
             return {
                 ...state,
                 message: action.message,

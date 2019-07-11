@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import { userGetWatcher, checkerChange } from '../../actions/userAction';
+import { driverCarGetWatcher } from '../../actions/driverAction';
+import PATHS from '../../constants/routes';
+import auth from '../../services/auth';
+import driverSwitch from '../../services/driver';
+import { joinDriverRoom, leaveDriverRoom } from '../../services/socket'; 
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -23,13 +30,6 @@ import Map from '@material-ui/icons/Map';
 import Navigation from '@material-ui/icons/Navigation';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
 import Room from '@material-ui/icons/Room';
-
-import { userGetWatcher, userGetNull, checkerChange } from '../../actions/userAction';
-import { driverCarGetWatcher } from '../../actions/driverCarAction';
-import PATHS from '../../constants/routes';
-import auth from '../../services/auth';
-import driverSwitch from '../../services/driver';
-import { joinDriverRoom, leaveDriverRoom } from '../../services/socket'; 
 
 class Header extends Component {
     constructor(props) {
@@ -70,7 +70,6 @@ class Header extends Component {
             joinDriverRoom();
         }
         this.props.checkerChange(driverSwitch.isChecked);
-        // this.setState({ switchDriver: driverSwitch.isChecked });
     }
 
     handlerOpenDrawer = (e) => {
@@ -90,8 +89,7 @@ class Header extends Component {
     }
 
     render() {
-        const { location, history, user, driver, car, isChecked } = this.props;
-        // console.log(driver, car);
+        const { location, history, user, isChecked } = this.props;
         let { openDrawer, switchDriver } = this.state;
         return (
             <React.Fragment>
@@ -116,8 +114,7 @@ class Header extends Component {
                             </NavLink> : null) :
                                 <Button className='btn_sign' variant="contained" color="secondary" onClick={this.handlerLogout}>
                                     Logout
-                            </Button>
-                            }
+                            </Button>}
                         </div>
                     </Toolbar>
                 </AppBar>
@@ -151,8 +148,8 @@ class Header extends Component {
                                         value={switchDriver}
                                         onChange={this.accountSwitcher}
                                         color={"secondary"}
-                                    />
-                                } label='Driver' />}
+                                    />} 
+                                    label='Driver' />}
                         <Divider />
                         <ListItem onClick={(e) => {
                             history.push(PATHS.TELEPORT);
@@ -208,7 +205,6 @@ class Header extends Component {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         userGetWatcher,
-        userGetNull,
         driverCarGetWatcher,
         checkerChange
     }, dispatch);
@@ -222,4 +218,3 @@ const mapStateToProps = ({ userState, driverState, carState }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
-

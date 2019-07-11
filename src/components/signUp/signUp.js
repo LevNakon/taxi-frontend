@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { signUpWatcher, signUpNull } from '../../actions/signUpAction';
+import GENDER from '../../constants/gender';
+
 import { TextField, RadioGroup } from 'formik-material-ui';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,13 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-import { signUpWatcher, signUpNull } from '../../actions/signUpAction';
-import GENDER from '../../constants/gender';
-
 class SignUp extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         if(this.props.success!==null){

@@ -18,7 +18,6 @@ import {
     cancelConfirmedTrip,
     finishConfirmedTrip
 } from '../../services/socket';
-import auth from '../../services/auth';
 import Trip from '../trip';
 
 import Button from '@material-ui/core/Button';
@@ -68,9 +67,6 @@ class Teleport extends Component {
     }
 
     componentDidMount() {
-        if (auth.isAuthenticated && this.props.user === null) {
-            this.props.userGetWatcher();
-        }
         getAvailableTrps((availableTrips) => {
             this.setState({
                 availableTrips
@@ -128,7 +124,7 @@ class Teleport extends Component {
 
     render() {
         const { user, isChecked } = this.props;
-        const { availableTrips, statusTrip, confirmedDriver, confirmedTrip, userId, driverId } = this.state;
+        const { availableTrips, statusTrip, confirmedDriver, confirmedTrip } = this.state;
         return (
             <Grid xs={10} md={10} item className='mg_0_auto'>
                 <Paper xs={10} md={10} item className='mg_0_auto user_bg paper_conf'>

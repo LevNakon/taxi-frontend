@@ -9,7 +9,6 @@ import { TextField, Select } from 'formik-material-ui';
 import { driverUpdateWatcher, driverCreateNull } from '../../actions/driverAction';
 import { userGetWatcher } from '../../actions/userAction';
 import { CONDITION } from '../../constants/additional';
-import auth from '../../services/auth';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,14 +17,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 class Driver extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
-        if (auth.isAuthenticated && this.props.user === null) {
-            this.props.userGetWatcher();
-        }
         if (this.props.success !== null) {
             this.props.driverCreateNull();
         }
@@ -51,7 +44,7 @@ class Driver extends Component {
                     });
                 }}
             >
-                {({ errors, touched, values }) => {
+                {({ values }) => {
                     const { driver, success, message } = this.props;
                     const accessSubmit = Object.keys(values).some((key) => {
                         return values[key] != driver[key]
@@ -62,7 +55,7 @@ class Driver extends Component {
                                 <h1 className='user_title'>Driver profile</h1>
                                 <Form className='for_update'>
                                     <Grid xs={12} md={12} item container>
-                                        <Grid item xs={12} md={6} item>
+                                        <Grid item xs={12} md={6}>
                                             <div className='mg_top_15'>
                                                 <Field variant="outlined" disabled={false} type="number" name="experience" label="Experience" component={TextField} />
                                             </div>
@@ -77,7 +70,7 @@ class Driver extends Component {
                                                 </FormControl>
                                             </div>
                                         </Grid>
-                                        <Grid item xs={12} md={4} item>
+                                        <Grid item xs={12} md={4}>
                                             {!success ? <div style={{ color: '#ff00cf' }}>{message}</div> : null}
                                             {accessSubmit ? <Button type="submit" className='btn_sign mg_top_20' variant="contained" color="secondary">Save</Button> : null}
                                         </Grid>

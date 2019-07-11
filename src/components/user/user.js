@@ -6,26 +6,19 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { TextField } from 'formik-material-ui';
 
-import { userUpdateWatcher, userUpdateNull } from '../../actions/userUpdateAction';
+import { userUpdateWatcher, userNull } from '../../actions/userAction';
 import { userGetWatcher } from '../../actions/userAction';
 import { phoneRegExp } from '../../constants/additional';
-import auth from '../../services/auth';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 class User extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
-        if (auth.isAuthenticated && this.props.user === null) {
-            this.props.userGetWatcher();
-        }
         if (this.props.success !== null) {
-            this.props.userUpdateNull();
+            this.props.userNull();
         }
     }
 
@@ -58,7 +51,7 @@ class User extends Component {
                     });
                 }}
             >
-                {({ errors, touched, values }) => {
+                {({ values }) => {
                     const { user, success, message } = this.props;
                     const accessSubmit = Object.keys(values).some((key) => {
                         if (user[key] == null) {
@@ -72,7 +65,7 @@ class User extends Component {
                                 <h1 className='user_title'>User profile</h1>
                                 <Form className='for_update'>
                                     <Grid xs={12} md={12} item container>
-                                        <Grid item xs={12} md={6} item>
+                                        <Grid item xs={12} md={6}>
                                             <div className='mg_top_15'>
                                                 <Field variant="outlined" disabled={false} type="text" name="firstName" label="First Name" component={TextField} />
                                             </div>
@@ -99,7 +92,7 @@ class User extends Component {
                                             </div>
 
                                         </Grid>
-                                        <Grid item xs={12} md={4} item>
+                                        <Grid item xs={12} md={4}>
                                             {!success ? <div style={{ color: '#ff00cf' }}>{message}</div> : null}
                                             {accessSubmit ? <Button type="submit" className='btn_sign mg_top_20' variant="contained" color="secondary">Save</Button> : null}
                                         </Grid>
@@ -129,13 +122,13 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         userUpdateWatcher,
         userGetWatcher,
-        userUpdateNull
+        userNull
     }, dispatch);
 };
 
-const mapStateToProps = ({ userState, userUpdateState }) => ({
-    message: userUpdateState.message,
-    success: userUpdateState.success,
+const mapStateToProps = ({ userState }) => ({
+    message: userState.message,
+    success: userState.success,
     user: userState.user,
 });
 

@@ -6,8 +6,6 @@ import { FixedSizeList } from 'react-window';
 
 import { tripGetWatcher, tripNull } from '../../actions/tripAction';
 import { userGetWatcher } from '../../actions/userAction';
-import { CONDITION } from '../../constants/additional';
-import auth from '../../services/auth';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -15,14 +13,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 class Trips extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
-        if (auth.isAuthenticated && this.props.user === null) {
-            this.props.userGetWatcher();
-        }
         if (this.props.success !== null) {
             this.props.tripNull();
         }
@@ -32,8 +24,7 @@ class Trips extends Component {
     }
 
     row = ({ index }) => {
-        const { trips } = this.state;
-        console.log(trips);
+        const { trips } = this.props;
         return (
             <ListItem button key={index}>
                 <ListItemText primary={`${trips[index].startAddress} - ${trips[index].endAddress}`} secondary={`Price - ${trips[index].price}`} />
@@ -43,23 +34,24 @@ class Trips extends Component {
 
     render() {
         const { trips } = this.props;
-        console.log(trips);
         return (
             <Grid xs={10} md={10} item className='mg_0_auto'>
                 <Paper xs={10} md={10} item className='mg_0_auto user_bg paper_conf'>
-                    {trips ? <React.Fragment>{trips.length > 0 ?
+                    <h2>Trip History:</h2>
+                    {trips ?
                         <React.Fragment>
-                            {trips.map((elem)=>{
-                                return <li>{elem.startAddress}</li>
-                            })}
-                            {/* console.log('kek') */}
-                            {/* <FixedSizeList height={500} width={300} itemSize={70} itemCount={trips.length}>
-                                {this.row}
-                            </FixedSizeList> */}
-                        </React.Fragment> :
-                        <p>No trips</p>
-                    }
-                    </React.Fragment> : null
+                            {trips.length > 0 ?
+                                <div>
+                                    {!trips.length ?
+                                        <p>No available trips</p> :
+                                        <FixedSizeList height={500} width={300} itemSize={35} itemCount={trips.length}>
+                                            {this.row}
+                                        </FixedSizeList>
+                                    }
+                                </div> :
+                                <p>No trips</p>
+                            }
+                        </React.Fragment> : null
                     }
                 </Paper>
             </Grid>

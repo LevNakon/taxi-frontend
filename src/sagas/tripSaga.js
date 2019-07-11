@@ -1,8 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import LayoutAPI from '../apis/layouts';
-import auth from '../services/auth';
-import PATHS from '../constants/routes';
 import { tripCreateSuccess, tripGetAllSuccess, tripFail, TRIP_CREATE_WATCHER, TRIP_GET_ALL_WATCHER } from '../actions/tripAction';
 
 function* tripCreate(action) {
@@ -13,7 +11,6 @@ function* tripCreate(action) {
         id,
         history
     } = action.payload;
-    console.log(action.payload);
     try {
         let { data } = yield call(LayoutAPI.tripCreate, {
             startAddress,
@@ -21,7 +18,6 @@ function* tripCreate(action) {
             price,
             id
         });
-        console.log(data);
         yield put(tripCreateSuccess(data));
     } catch (error) {
         const { data } = error.response;

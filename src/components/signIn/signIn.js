@@ -12,9 +12,6 @@ import Button from '@material-ui/core/Button';
 import { signInWatcher, signInNull } from '../../actions/signInAction';
 
 class SignIn extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         if (this.props.success !== null) {

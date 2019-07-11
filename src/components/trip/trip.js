@@ -4,17 +4,12 @@ import { bindActionCreators } from 'redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { TextField } from 'formik-material-ui';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-
 import { tripCreateWatcher, tripNull } from '../../actions/tripAction';
 
+import { TextField } from 'formik-material-ui';
+import Button from '@material-ui/core/Button';
+
 class Trip extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         if (this.props.success !== null) {
@@ -36,7 +31,7 @@ class Trip extends Component {
                     sendLocation(startAddress, endAddress);
                 }}
             >
-                {({ errors, touched }) => {
+                {() => {
                     const { message, success } = this.props;
                     return (
                         <Form className='order_form'>

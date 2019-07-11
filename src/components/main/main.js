@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import SignIn from '../signIn';
+
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -6,14 +9,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import SignIn from '../signIn';
-
 import main from '../../static/images/main.png';
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (
