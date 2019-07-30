@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User --- test render correctly component render correctly component User 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(User)
+    message=""
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    success={true}
+    user={
+      Object {
+        "avatarUrl": "test avatarUrl",
+        "birthdayDate": "test birthdayDate",
+        "driverId": null,
+        "email": "test email",
+        "firstName": "test firstName",
+        "gender": "MALE",
+        "homeAddress": "test homeAddress",
+        "lastName": "test lastName",
+        "mobileNumber": "test mobileNumber",
+        "password": "test password",
+        "workAddress": "test workAddress",
+      }
+    }
+    userGetWatcher={[Function]}
+    userNull={[Function]}
+    userUpdateWatcher={[Function]}
+  />
+</ContextProvider>
+`;

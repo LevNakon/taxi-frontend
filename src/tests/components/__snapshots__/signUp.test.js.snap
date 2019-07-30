@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp --- test render correctly component render correctly component SignUp 1`] = `
+<ContextProvider
+  value={null}
+>
+  <SignUp
+    message=""
+    signUpNull={[Function]}
+    signUpWatcher={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    success={true}
+    userId={1}
+  />
+</ContextProvider>
+`;

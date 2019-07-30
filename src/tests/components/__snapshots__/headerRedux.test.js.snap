@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Redux --- test render correctly component render correctly component Header 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(Header)
+    car={
+      Object {
+        "brand": "test brand",
+        "model": "test model",
+        "run": 20000,
+        "year": 2000,
+      }
+    }
+    checkerChange={[Function]}
+    driver={
+      Object {
+        "condition": "COMFORT",
+        "experience": 0,
+      }
+    }
+    driverCarGetWatcher={[Function]}
+    isChecked={false}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    user={
+      Object {
+        "avatarUrl": "test avatarUrl",
+        "birthdayDate": "test birthdayDate",
+        "driverId": null,
+        "email": "test email",
+        "firstName": "test firstName",
+        "gender": "MALE",
+        "homeAddress": "test homeAddress",
+        "lastName": "test lastName",
+        "mobileNumber": "test mobileNumber",
+        "password": "test password",
+        "workAddress": "test workAddress",
+      }
+    }
+    userGetWatcher={[Function]}
+  />
+</ContextProvider>
+`;

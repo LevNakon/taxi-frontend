@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer --- test render correctly component render correctly component Footer 1`] = `
+<div
+  className="footer"
+>
+  <p>
+    Created by Lev Nakonechnyy
+  </p>
+</div>
+`;

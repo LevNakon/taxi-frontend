@@ -13,6 +13,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
+/**
+ * Car component.
+ * Form to update user car information if you switched to driver.
+ */
 class Car extends Component {
 
     componentDidMount() {
@@ -23,7 +27,8 @@ class Car extends Component {
 
     render() {
         const { car } = this.props;
-        return (<React.Fragment>
+        return (
+        <React.Fragment>
             {car ? <Formik
                 initialValues={{
                     brand: car.brand || '',

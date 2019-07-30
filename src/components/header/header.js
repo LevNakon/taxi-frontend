@@ -31,7 +31,7 @@ import Navigation from '@material-ui/icons/Navigation';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
 import Room from '@material-ui/icons/Room';
 
-class Header extends Component {
+export class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {

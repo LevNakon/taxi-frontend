@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Trips --- test render correctly component render correctly component Trips 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(Trips)
+    message=""
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    success={true}
+    tripGetWatcher={[Function]}
+    tripNull={[Function]}
+    trips={Array []}
+    userGetWatcher={[Function]}
+  />
+</ContextProvider>
+`;

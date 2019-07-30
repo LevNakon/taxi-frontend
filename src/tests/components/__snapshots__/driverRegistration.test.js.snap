@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DriverRegistration --- test render correctly component render correctly component DriverRegistration 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(DriverRegistration)
+    car={
+      Object {
+        "brand": "test brand",
+        "model": "test model",
+        "run": 20000,
+        "year": 2000,
+      }
+    }
+    carCreateNull={[Function]}
+    driver={
+      Object {
+        "condition": "COMFORT",
+        "experience": 0,
+      }
+    }
+    driverCarWatcher={[Function]}
+    driverCreateNull={[Function]}
+    messageCar=""
+    messageDriver=""
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    successCar={true}
+    successDriver={true}
+  />
+</ContextProvider>
+`;

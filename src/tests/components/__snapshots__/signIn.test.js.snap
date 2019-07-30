@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn --- test render correctly component render correctly component SignIn 1`] = `
+<ContextProvider
+  value={null}
+>
+  <SignIn
+    message=""
+    signInNull={[Function]}
+    signInWatcher={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    success={true}
+  />
+</ContextProvider>
+`;

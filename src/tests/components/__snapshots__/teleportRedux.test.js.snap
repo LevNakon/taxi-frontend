@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Teleport Redux --- test render correctly component render correctly component Teleport 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(Teleport)
+    checkerChange={[Function]}
+    isChecked={false}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    tripCreateWatcher={[Function]}
+    user={
+      Object {
+        "avatarUrl": "test avatarUrl",
+        "birthdayDate": "test birthdayDate",
+        "driverId": null,
+        "email": "test email",
+        "firstName": "test firstName",
+        "gender": "MALE",
+        "homeAddress": "test homeAddress",
+        "lastName": "test lastName",
+        "mobileNumber": "test mobileNumber",
+        "password": "test password",
+        "workAddress": "test workAddress",
+      }
+    }
+    userGetWatcher={[Function]}
+  />
+</ContextProvider>
+`;

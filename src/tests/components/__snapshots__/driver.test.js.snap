@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Driver --- test render correctly component render correctly component Driver 1`] = `
+<ContextProvider
+  value={null}
+>
+  <withRouter(Driver)
+    driver={
+      Object {
+        "condition": "COMFORT",
+        "experience": 0,
+      }
+    }
+    driverCreateNull={[Function]}
+    driverUpdateWatcher={[Function]}
+    message=""
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    success={true}
+    userGetWatcher={[Function]}
+  />
+</ContextProvider>
+`;

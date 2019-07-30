@@ -27,7 +27,7 @@ class Trip extends Component {
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
                     const { startAddress, endAddress } = values;
-                    const { history, sendLocation } = this.props;
+                    const { sendLocation } = this.props;
                     sendLocation(startAddress, endAddress);
                 }}
             >

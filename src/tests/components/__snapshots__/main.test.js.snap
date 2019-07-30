@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main --- test render correctly component render correctly component Main 1`] = `
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  justify="space-around"
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    md={5}
+    xs={10}
+  >
+    <Connect(SignIn) />
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    md={5}
+    xs={10}
+  >
+    <WithStyles(ForwardRef(Card))
+      className="card_photo"
+    >
+      <WithStyles(ForwardRef(CardActionArea))>
+        <WithStyles(ForwardRef(CardMedia))
+          alt="Teleport"
+          className="main_photo"
+          component="img"
+          image="main.png"
+          title="Teleport"
+        />
+        <WithStyles(ForwardRef(CardContent))>
+          <WithStyles(ForwardRef(Typography))
+            component="h2"
+            gutterBottom={true}
+            variant="h5"
+          >
+            Teleport
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            color="textSecondary"
+            component="p"
+            variant="body2"
+          >
+            App which allow you teleport!
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(CardActionArea))>
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;
