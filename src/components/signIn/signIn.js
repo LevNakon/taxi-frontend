@@ -11,6 +11,10 @@ import Button from '@material-ui/core/Button';
 
 import { signInWatcher, signInNull } from '../../actions/signInAction';
 
+/**
+ * Sign In component.
+ * Show Sign In form.
+ */
 class SignIn extends Component {
 
     componentDidMount() {

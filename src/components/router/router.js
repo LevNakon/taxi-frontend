@@ -13,6 +13,10 @@ import Trips from '../trips'
 import DriverRegistration from '../driverRegistration';
 import Error404 from '../error404';
 
+/**
+ * Route component.
+ * Give finctionality to route between pages.
+ */
 export default class Router extends Component {
 
     render() {

@@ -12,6 +12,10 @@ import Paper from '@material-ui/core/Paper';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+/**
+ * Trips component.
+ * Component which show user his trip history.
+ */
 class Trips extends Component {
 
     componentDidMount() {
@@ -23,6 +27,9 @@ class Trips extends Component {
         });
     }
 
+    /**
+     * Function that return jsx element to create user trip information.
+     */
     row = ({ index }) => {
         const { trips } = this.props;
         return (

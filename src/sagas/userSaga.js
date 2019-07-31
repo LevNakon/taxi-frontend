@@ -9,6 +9,11 @@ import {
     USER_UPDATE_WATCHER
 } from '../actions/userAction';
 
+/**
+ * Update user generarator.
+ * 
+ * @param {Object} action 
+ */
 function* userUpdate(action) {
     const {
         firstName,
@@ -38,6 +43,11 @@ function* userUpdate(action) {
     }
 };
 
+/**
+ * Get user generarator.
+ * 
+ * @param {Object} action 
+ */
 function* userGet() {
     try {
         let { data } = yield call(LayoutAPI.userGet);
@@ -48,10 +58,16 @@ function* userGet() {
     }
 };
 
+/**
+ * Get user watcher generator.
+ */
 export function* userGetWatcher() {
     yield takeLatest(USER_GET_WATCHER, userGet);
 };
 
+/**
+ * Update user watcher generator.
+ */
 export function* userUpdateWatcher() {
     yield takeLatest(USER_UPDATE_WATCHER, userUpdate);
 };

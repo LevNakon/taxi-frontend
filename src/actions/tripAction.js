@@ -5,6 +5,12 @@ export const TRIP_NULL = 'TRIP_NULL';
 export const TRIP_GET_ALL_SUCCESS = 'TRIP_GET_ALL_SUCCESS';
 export const TRIP_GET_ALL_WATCHER = 'TRIP_GET_ALL_WATCHER';
 
+/**
+ * Creare action for trip reducer if trip creation is success.
+ * 
+ * @param {Object} payload
+ * @returns {Object} - action for trip reducer if trip creation is success. 
+ */
 export function tripCreateSuccess(payload){
     return { 
         type: TRIP_CREATE_SUCCESS,
@@ -13,6 +19,12 @@ export function tripCreateSuccess(payload){
     };
 };
 
+/**
+ * Creare action for trip reducer if get all trips is success.
+ * 
+ * @param {Object} payload
+ * @returns {Object} - action for trip reducer if get all trips is success. 
+ */
 export function tripGetAllSuccess(payload){
     return { 
         type: TRIP_GET_ALL_SUCCESS,
@@ -22,6 +34,12 @@ export function tripGetAllSuccess(payload){
     };
 };
 
+/**
+ * Creare action for trip reducer if everything is failed.
+ * 
+ * @param {Object} payload
+ * @returns {Object} - action for trip reducer if everything is failed. 
+ */
 export function tripFail(payload){
     return { 
         type: TRIP_FAIL,
@@ -30,6 +48,11 @@ export function tripFail(payload){
     };
 };
 
+/**
+ * Creare action for trip reducer to set initial state. 
+ * 
+ * @returns {Object} - action for trip reducer to set initial state. 
+ */
 export function tripNull(){
     return { 
         type: TRIP_NULL,
@@ -39,6 +62,12 @@ export function tripNull(){
     };
 };
 
+/**
+ * Creare action for trip creation saga watcher. 
+ * 
+ * @param {Object} payload
+ * @returns {Object} - action for trip creation saga watcher. 
+ */
 export function tripCreateWatcher(payload){
     return {
         type: TRIP_CREATE_WATCHER,
@@ -46,6 +75,12 @@ export function tripCreateWatcher(payload){
     }
 };
 
+/**
+ * Creare action for trip get saga watcher. 
+ * 
+ * @param {Object} payload
+ * @returns {Object} - action for trip get saga watcher. 
+ */
 export function tripGetWatcher(payload){
     return {
         type: TRIP_GET_ALL_WATCHER,

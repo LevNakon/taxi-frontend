@@ -14,6 +14,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
+/**
+ * User component.
+ * Form to update user information.
+ */
 class User extends Component {
 
     componentDidMount() {

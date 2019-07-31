@@ -15,6 +15,11 @@ import {
     carCreateFail
 } from '../actions/carAction';
 
+/**
+ * Get car generarator.
+ * 
+ * @param {Object} action 
+ */
 function* driverCarGet(action) {
     const {
         driverId
@@ -37,6 +42,11 @@ function* driverCarGet(action) {
     }
 };
 
+/**
+ * Create driver and car generarator.
+ * 
+ * @param {Object} action 
+ */
 function* driverCar(action) {
     const {
         experience,
@@ -73,6 +83,11 @@ function* driverCar(action) {
     }
 };
 
+/**
+ * Create driver generarator.
+ * 
+ * @param {Object} action 
+ */
 function* driverCreate(action) {
     const {
         experience,
@@ -91,6 +106,11 @@ function* driverCreate(action) {
     }
 }
 
+/**
+ * Update driver generarator.
+ * 
+ * @param {Object} action 
+ */
 function* driverUpdate(action) {
     const {
         experience,
@@ -112,18 +132,30 @@ function* driverUpdate(action) {
     }
 }
 
+/**
+ * Update driver watcher generarator.
+ */
 export function* driverUpdateWatcher() {
     yield takeLatest(DRIVER_UPDATE_WATCHER, driverUpdate);
 };
 
+/**
+ * Create driver watcher generarator.
+ */
 export function* driverCreateWatcher() {
     yield takeLatest(DRIVER_CREATE_WATCHER, driverCreate);
 };
 
+/**
+ * Create driver and car watcher generarator.
+ */
 export function* driverCarWatcher() {
     yield takeLatest(DRIVER_CAR_WATCHER, driverCar);
 };
 
+/**
+ * Get driver and car watcher generarator.
+ */
 export function* driverCarGetWatcher() {
     yield takeLatest(DRIVER_CAR_GET_WATCHER, driverCarGet);
 };

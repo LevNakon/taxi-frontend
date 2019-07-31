@@ -16,6 +16,10 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
+/**
+ * Driver component.
+ * Form to update user driver information if you switched to driver.
+ */
 class Driver extends Component {
 
     componentDidMount() {

@@ -3,6 +3,11 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import LayoutAPI from '../apis/layouts';
 import { carCreateSuccess, carCreateFail, CAR_CREATE_WATCHER, CAR_UPDATE_WATCHER } from '../actions/carAction';
 
+/**
+ * Create car generarator.
+ * 
+ * @param {Object} action 
+ */
 function* carCreate(action) {
     const {
         brand,
@@ -25,6 +30,11 @@ function* carCreate(action) {
     }
 };
 
+/**
+ * Update car generarator.
+ * 
+ * @param {Object} action 
+ */
 function* carUpdate(action) {
     const {
         brand,
@@ -50,10 +60,16 @@ function* carUpdate(action) {
     }
 };
 
+/**
+ * Create car watcher generarator.
+ */
 export function* carCreateWatcher() {
     yield takeLatest(CAR_CREATE_WATCHER, carCreate);
 };
 
+/**
+ * Update car watcher generarator.
+ */
 export function* carUpdateWatcher() {
     yield takeLatest(CAR_UPDATE_WATCHER, carUpdate);
 };

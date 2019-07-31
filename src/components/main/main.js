@@ -11,6 +11,10 @@ import Typography from '@material-ui/core/Typography';
 
 import main from '../../static/images/main.png';
 
+/**
+ * Main component.
+ * Show Sign In form and project information if you didn't logined.
+ */
 export default class Main extends Component {
 
     render() {

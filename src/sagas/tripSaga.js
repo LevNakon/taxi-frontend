@@ -3,6 +3,11 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import LayoutAPI from '../apis/layouts';
 import { tripCreateSuccess, tripGetAllSuccess, tripFail, TRIP_CREATE_WATCHER, TRIP_GET_ALL_WATCHER } from '../actions/tripAction';
 
+/**
+ * Create trip generarator.
+ * 
+ * @param {Object} action 
+ */
 function* tripCreate(action) {
     const {
         startAddress,
@@ -25,6 +30,11 @@ function* tripCreate(action) {
     }
 }
 
+/**
+ * Get all trips generarator.
+ * 
+ * @param {Object} action 
+ */
 function* tripGetAll(action) {
     const {
         history
@@ -38,10 +48,16 @@ function* tripGetAll(action) {
     }
 }
 
+/**
+ * Get all trips watcher generarator.
+ */
 export function* tripGetAllWatcher() {
     yield takeLatest(TRIP_GET_ALL_WATCHER, tripGetAll);
 };
 
+/**
+ * Create trip watcher generarator.
+ */
 export function* tripCreateWatcher() {
     yield takeLatest(TRIP_CREATE_WATCHER, tripCreate);
 };

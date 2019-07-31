@@ -16,6 +16,10 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 
+/**
+ * Driver Registration component.
+ * Form to create driver.
+ */
 class DriverRegistration extends Component {
 
     componentDidMount() {

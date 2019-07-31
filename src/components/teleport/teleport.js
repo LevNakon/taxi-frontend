@@ -25,6 +25,11 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+
+/**
+ * Teleport component.
+ * Main component after logination which allow user to create trip and show driver list of available trips.
+ */
 class Teleport extends Component {
     constructor(props) {
         super(props)
@@ -38,18 +43,53 @@ class Teleport extends Component {
             trip: null
         }
 
+        /**
+         * Callback for updating state with new available trips .
+         *
+         * @callback getAvailableTrpsCallback
+         * @param {Array} availableTrips - An trip object.
+         */
+
+        /**
+         * Take from socket available trips.
+         * @param {getAvailableTrpsCallback} callback 
+         */
         getAvailableTrps((availableTrips) => {
             this.setState({
                 availableTrips
             });
         });
 
+        /**
+         * Callback for updating state with new trip status .
+         *
+         * @callback tripStatusCallback
+         * @param {Boolean} statusTrip - An trip status.
+         */
+
+        /**
+         * Take from socket trip status.
+         * @param {tripStatusCallback} callback
+         */
         tripStatus((statusTrip) => {
             this.setState({
                 statusTrip
             });
         });
 
+        /**
+         * Callback for updating state with new driver trip status .
+         *
+         * @callback tripDriverStatusCallback
+         * @param {Boolean} confirmedDriver - An driver trip status.
+         * @param {Number} userId - An user id.
+         * @param {Object} trip - An trip object.
+         */
+
+        /**
+         * Take from socket trip driver status.
+         * @param {tripDriverStatusCallback} callback
+         */
         tripDriverStatus((confirmedDriver, userId, trip) => {
             this.setState({
                 confirmedDriver,
@@ -58,6 +98,18 @@ class Teleport extends Component {
             });
         });
 
+        /**
+         * Callback for updating state with confirmed trip for user status.
+         *
+         * @callback confirmedTripForUserCallback
+         * @param {Boolean} confirmedTrip - An confirmed trip status.
+         * @param {Number} driverId - An driver id.
+         */
+
+        /**
+         * Take from socket confirmed trip for user.
+         * @param {confirmedTripForUserCallback} callback
+         */
         confirmedTripForUser((confirmedTrip, driverId) => {
             this.setState({
                 confirmedTrip,
@@ -75,6 +127,11 @@ class Teleport extends Component {
 
     }
 
+    /**
+     * Give socket trip information such as start address and end address.
+     * @param {String} startAddress
+     * @param {String} endAddress
+     */
     sendLocationHandler = (startAddress, endAddress) => {
         trip({
             name: this.props.user.firstName,
@@ -84,21 +141,34 @@ class Teleport extends Component {
         })
     }
 
+    /**
+     * Give socket trip information such as canceled trip by user before driver trip confirmation.
+     */
     cancelTrip = () => {
         tripCancel({
             id: this.props.user.id
         })
     }
 
+    /**
+     * Give socket trip information such as id user to confirm trip by driver.
+     * @param {Number} id
+     */
     confirmTrip = (id) => (e) => {
         driverConfirm(id);
     }
 
+    /**
+     * Give socket trip information such as canceled trip by user after driver trip confirmation.
+     */
     cancelTripConfirmed = () => {
         const { driverId } = this.state;
         cancelConfirmedTrip(driverId);
     }
 
+    /**
+     * Give socket trip information such as finish trip by driver.
+     */
     finishTripConfirmed = () => {
         const { userId, trip } = this.state;
         const { tripCreateWatcher } = this.props;
@@ -112,6 +182,9 @@ class Teleport extends Component {
         finishConfirmedTrip(userId);
     }
 
+    /**
+     * Function that return jsx element to create user trip information.
+     */
     row = ({ index }) => {
         const { availableTrips } = this.state;
         return (

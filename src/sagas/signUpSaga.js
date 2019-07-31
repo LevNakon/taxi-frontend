@@ -4,6 +4,11 @@ import LayoutAPI from '../apis/layouts';
 import PATHS from '../constants/routes';
 import { signUpSuccess, signUpFail, SIGN_UP_WATCHER } from '../actions/signUpAction';
 
+/**
+ * Sign Up generarator.
+ * 
+ * @param {Object} action 
+ */
 function* signUp(action) {
     const {
         firstName,
@@ -29,6 +34,9 @@ function* signUp(action) {
     }
 };
 
+/**
+ * Sign Up watcher generator.
+ */
 export function* signUpWatcher() {
     yield takeLatest(SIGN_UP_WATCHER, signUp);
 };

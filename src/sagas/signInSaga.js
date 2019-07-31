@@ -6,6 +6,11 @@ import PATHS from '../constants/routes';
 import { signInSuccess, signInFail, SIGN_IN_WATCHER } from '../actions/signInAction';
 import { userGetSuccess } from '../actions/userAction';
 
+/**
+ * Sign In generarator.
+ * 
+ * @param {Object} action 
+ */
 function* signIn(action) {
     const {
         email,
@@ -28,6 +33,9 @@ function* signIn(action) {
     }
 };
 
+/**
+ * Sign In watcher generarator.
+ */
 export function* signInWatcher() {
     yield takeLatest(SIGN_IN_WATCHER, signIn);
 };

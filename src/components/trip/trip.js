@@ -9,6 +9,10 @@ import { tripCreateWatcher, tripNull } from '../../actions/tripAction';
 import { TextField } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
 
+/**
+ * Trip component.
+ * Form which allow user to create trip with start and end points.
+ */
 class Trip extends Component {
 
     componentDidMount() {

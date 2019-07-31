@@ -8,7 +8,7 @@ import { driverCarGetWatcher } from '../../actions/driverAction';
 import PATHS from '../../constants/routes';
 import auth from '../../services/auth';
 import driverSwitch from '../../services/driver';
-import { joinDriverRoom, leaveDriverRoom } from '../../services/socket'; 
+import { joinDriverRoom, leaveDriverRoom } from '../../services/socket';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,6 +31,11 @@ import Navigation from '@material-ui/icons/Navigation';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
 import Room from '@material-ui/icons/Room';
 
+
+/**
+ * Header component.
+ * Give user possible to route between pages.
+ */
 export class Header extends Component {
     constructor(props) {
         super(props)
@@ -45,7 +50,7 @@ export class Header extends Component {
             this.props.userGetWatcher();
         }
         this.props.checkerChange(driverSwitch.isChecked);
-        if(driverSwitch.isChecked){
+        if (driverSwitch.isChecked) {
             joinDriverRoom();
         }
     }
@@ -61,6 +66,10 @@ export class Header extends Component {
         }
     }
 
+    /**
+     * Allow user switch between user and driver account.
+     * @param {Event} e click button event.
+     */
     accountSwitcher = (e) => {
         if (!e.currentTarget.checked) {
             driverSwitch.setCheckedFalse();
@@ -72,18 +81,31 @@ export class Header extends Component {
         this.props.checkerChange(driverSwitch.isChecked);
     }
 
+    /**
+     * Allow user open drawer if user logined.
+     * @param {Event} e click button event.
+     */
     handlerOpenDrawer = (e) => {
         this.setState({
             openDrawer: true
         });
     }
 
+    /**
+     * Allow user close drawer if user logined.
+     * @param {Event} e click button event.
+     */
     handlerCloseDrawer = (e) => {
         this.setState({
             openDrawer: false
         });
     }
 
+
+    /**
+     * Allow user logout if user logined.
+     * @param {Event} e click button event.
+     */
     handlerLogout = (e) => {
         auth.logout();
     }
@@ -148,8 +170,8 @@ export class Header extends Component {
                                         value={switchDriver}
                                         onChange={this.accountSwitcher}
                                         color={"secondary"}
-                                    />} 
-                                    label='Driver' />}
+                                    />}
+                                label='Driver' />}
                         <Divider />
                         <ListItem onClick={(e) => {
                             history.push(PATHS.TELEPORT);
