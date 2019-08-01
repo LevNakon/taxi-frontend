@@ -1,6 +1,5 @@
 import openSocket from 'socket.io-client';
-// const socket = openSocket(process.env.NODE_ENV !== 'production'? 'http://localhost:8080' : 'https://taxi-like-backend.herokuapp.com');
-const socket = openSocket('https://taxi-like-backend.herokuapp.com');
+const socket = openSocket(process.env.REACT_TAXI_API_URL);
 
 /**
  * Socket event that send trip information data.

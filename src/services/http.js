@@ -4,12 +4,10 @@ import auth from './auth';
 import LOCALSTORAGE from '../constants/localsorage';
 
 const http = axios.create({
-    // baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8080' : 'https://taxi-like-backend.herokuapp.com'
-    baseURL: 'https://taxi-like-backend.herokuapp.com'
+    baseURL: process.env.REACT_TAXI_API_URL
 });
 
 http.interceptors.request.use((config) => {
-    console.log('baseUrl', http.baseURL, process.env.NODE_ENV);
     if (localStorage.getItem(LOCALSTORAGE.TOKEN) !== null) {
         let current_time = Date.now() / 1000;
         let expiration_time = auth.parseJwt(localStorage.getItem(LOCALSTORAGE.TOKEN)).exp;
