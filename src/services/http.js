@@ -8,7 +8,7 @@ const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
-    console.log('baseUrl', http.baseURL);
+    console.log('baseUrl', http.baseURL, process.env.NODE_ENV);
     if (localStorage.getItem(LOCALSTORAGE.TOKEN) !== null) {
         let current_time = Date.now() / 1000;
         let expiration_time = auth.parseJwt(localStorage.getItem(LOCALSTORAGE.TOKEN)).exp;
