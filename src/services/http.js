@@ -4,7 +4,8 @@ import auth from './auth';
 import LOCALSTORAGE from '../constants/localsorage';
 
 const http = axios.create({
-    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8080' : 'https://taxi-like-backend.herokuapp.com'
+    // baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8080' : 'https://taxi-like-backend.herokuapp.com'
+    baseURL: 'https://taxi-like-backend.herokuapp.com'
 });
 
 http.interceptors.request.use((config) => {
