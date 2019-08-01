@@ -2,13 +2,13 @@ import axios from 'axios';
 
 import auth from './auth';
 import LOCALSTORAGE from '../constants/localsorage';
+import { TAXI_API_URL } from '../constants/additional';
 
 const http = axios.create({
-    baseURL: process.env.REACT_TAXI_API_URL
+    baseURL: TAXI_API_URL
 });
 
 http.interceptors.request.use((config) => {
-    console.log(process.env.REACT_TAXI_API_URL);
     if (localStorage.getItem(LOCALSTORAGE.TOKEN) !== null) {
         let current_time = Date.now() / 1000;
         let expiration_time = auth.parseJwt(localStorage.getItem(LOCALSTORAGE.TOKEN)).exp;

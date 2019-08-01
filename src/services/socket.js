@@ -1,5 +1,6 @@
 import openSocket from 'socket.io-client';
-const socket = openSocket(process.env.REACT_TAXI_API_URL);
+import { TAXI_API_URL } from '../constants/additional';
+const socket = openSocket(TAXI_API_URL);
 
 /**
  * Socket event that send trip information data.
